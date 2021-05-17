@@ -405,6 +405,13 @@
 			body.addEventListener("dragleave", on_file_dragleave.bind(body, converter), false);
 			body.addEventListener("drop", on_file_drop.bind(body, converter), false);
 
+			let btn = document.getElementById("convert_btn");
+			btn.onclick = function() {
+				let url_input = document.getElementById("convert_link");
+				fetch(url_input.value)
+				   .then( file => on_converter_test_files.call(converter, file) )
+			};
+
 			// Exclusive
 			if (exclusive_mode !== null) {
 				exclusive_mode_update.call(exclusive_mode, non_exclusive_body, true);
