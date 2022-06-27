@@ -743,6 +743,13 @@ var T2M = (function () {
 				t.read(files[i]);
 			}
 		},
+		queue_torrent_blob: function (blob) {
+			// Read blob
+			var t;
+			t = new Torrent();
+			t.on("load", on_torrent_load);
+			t.read(blob);
+		},
 	};
 
 	return functions;
