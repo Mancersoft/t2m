@@ -229,21 +229,23 @@
 		return false;
 	};
 
-	var on_converter_test_files = function (files) {
-		// Read
-		var re_ext = /(\.[^\.]*|)$/,
-			read_files = [],
-			ext, i;
+	var on_converter_test_files = function (files, isBlob) {	
+		if (!isBlob) {
+			// Read
+			var re_ext = /(\.[^\.]*|)$/,
+				read_files = [],
+				ext, i;
 
-		for (i = 0; i < files.length; ++i) {
-			ext = re_ext.exec(files[i].name)[1].toLowerCase();
-			if (ext == ".torrent") {
-				read_files.push(files[i]);
+			for (i = 0; i < files.length; ++i) {
+				ext = re_ext.exec(files[i].name)[1].toLowerCase();
+				if (ext == ".torrent") {
+					read_files.push(files[i]);
+				}
 			}
-		}
 
-		// Nothing to do
-		if (read_files.length === 0) return;
+			// Nothing to do
+			if (read_files.length === 0) return;
+		}
 
 		// Load scripts if necessary
 		load_requirements(function (errors) {
@@ -256,7 +258,11 @@
 				catch(e) {
 					return; // not found
 				}
-				T2M_obj.queue_torrent_files(read_files);
+				if (isBlob){
+					T2M_obj.queue_torrent_blob(files);
+				} else {
+					T2M_obj.queue_torrent_files(read_files);
+				}
 			}
 		});
 	};
@@ -409,7 +415,8 @@
 			btn.onclick = function() {
 				let url_input = document.getElementById("convert_link");
 				fetch(url_input.value)
-				   .then( file => on_converter_test_files.call(converter, file) )
+				   .then( data => data.blob())
+				   .then( file => on_converter_test_files.call(converter, file, true) )
 			};
 
 			// Exclusive
