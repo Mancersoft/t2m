@@ -733,6 +733,8 @@ var T2M = (function () {
 		},
 		queue_torrent_blob: function (blob) {
 			return new Promise((resolve, reject) => {
+				resolve("TEST")
+				return;
 				// Read blob
 				var t;
 				t = new Torrent();
