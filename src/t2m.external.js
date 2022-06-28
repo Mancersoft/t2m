@@ -732,26 +732,17 @@ var T2M = (function () {
 			}
 		},
 		queue_torrent_blob: function (blob) {
-			// Read blob
-			var t;
-			t = new Torrent();
-			t.on("load", on_torrent_load);
-			t.read(blob);
-			console.log("OK")
-			var on_torrent_load = function () {
-
-				var result_link = t.convert_to_magnet(null, false, true, null, false);
-				
-				console.log("OKK")
-				console.log(result_link)
-
-				var link_elements = document.getElementsByClassName("torrent-download-link");
-				link_elements.forEach(element => {
-					console.log("OKKK")
-					console.log(element.href)
-					element.setAttribute("href", result_link);
-				});
-			};
+			return new Promise((resolve, reject) => {
+				// Read blob
+				var t;
+				t = new Torrent();
+				t.on("load", on_torrent_load);
+				t.read(blob);
+				var on_torrent_load = function () {
+					var result_link = t.convert_to_magnet(null, false, true, null, false);
+					resolve(result_link)
+				};
+			})
 		},
 	};
 
