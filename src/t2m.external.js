@@ -721,27 +721,17 @@ var T2M = (function () {
 		setup: function (rice_checkboxes_import) {
 			rice_checkboxes = rice_checkboxes_import;
 		},
-		queue_torrent_files: function (files) {
-			// Read files
-			var i, t;
-
-			for (i = 0; i < files.length; ++i) {
-				t = new Torrent();
-				t.on("load", on_torrent_load);
-				t.read(files[i]);
-			}
-		},
 		queue_torrent_blob: function (blob) {
 			return new Promise((resolve, reject) => {
 				// Read blob
 				var t;
-				t = new Torrent();
-				t.on("load", on_torrent_load);
-				t.read(blob);
 				var on_torrent_load = function () {
 					var result_link = t.convert_to_magnet(null, false, true, null, false);
 					resolve(result_link)
 				};
+				t = new Torrent();
+				t.on("load", on_torrent_load);
+				t.read(blob);
 			})
 		},
 	};
