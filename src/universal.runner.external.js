@@ -20,6 +20,7 @@ loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
 document.onclick = function (e) {
+  console.log("IsLoaded: " + isAllLoaded);
   if (!isAllLoaded) {
     return true;
   }
