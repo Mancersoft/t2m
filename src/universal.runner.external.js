@@ -31,7 +31,6 @@ document.onclick = function (e) {
   && (element.href.startsWith("https:")
   || element.href.startsWith("http:"))
   && localStorage.getItem("TtoM:" + element.href) === null) {
-    console.log(element.href);
     fixIfTorrentLink(element);
     return false;
   }
@@ -58,7 +57,7 @@ async function checkHeadersIsTorrent(url) {
   const response = await fetch(url, {method: 'HEAD'});
   for (const headerEntry of response.headers) {
     if (headerEntry[0] == "content-type"
-    && headerEntry[1] == "application/x-bittorrent") {
+    && headerEntry[1].includes("application/x-bittorrent")) {
       return true;
     }
   }
