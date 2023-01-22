@@ -45,7 +45,7 @@ async function fixIfTorrentLink(element) {
     const blob = await data.blob();
     const result_link = await T2M.queue_torrent_blob(blob);
     element.setAttribute("href", result_link);
-    //element.click();
+    window.open(result_link);
     return;
   }
   
