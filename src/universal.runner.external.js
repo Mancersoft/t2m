@@ -19,25 +19,28 @@ loadScript("https://staskkk.github.io/t2m/src/bencode.js")
 loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
-document.onclick = function (e) {
-  if (!isAllLoaded) {
+var allLinkElems = document.body.getElementsByTagName("a");
+for(let linkElem of allLinkElems) {
+    linkElem.onclick = function (e) {
+    if (!isAllLoaded) {
+        return true;
+    }
+
+    e = e ||  window.event;
+    const element = e.target || e.srcElement;
+
+    if (element.tagName == 'A'
+    && (element.href.startsWith("https:")
+    || element.href.startsWith("http:"))
+    && localStorage.getItem("TtoM:" + element.href) === null) {
+        e.stopPropagation();
+        fixIfTorrentLink(element);
+        return false;
+    }
+    
     return true;
-  }
-
-  e = e ||  window.event;
-  const element = e.target || e.srcElement;
-
-  if (element.tagName == 'A'
-  && (element.href.startsWith("https:")
-  || element.href.startsWith("http:"))
-  && localStorage.getItem("TtoM:" + element.href) === null) {
-	e.stopPropagation();
-    fixIfTorrentLink(element);
-    return false;
-  }
-  
-  return true;
-};
+    };
+}
 
 async function fixIfTorrentLink(element) {
   if (await checkHeadersIsTorrent(element.href)) {
