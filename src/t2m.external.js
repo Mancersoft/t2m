@@ -739,5 +739,3 @@ var T2M = (function () {
 	return functions;
 
 })();
-
-console.log("SCRIPT LOADED!!!");
