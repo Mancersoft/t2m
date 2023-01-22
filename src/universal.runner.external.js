@@ -19,7 +19,7 @@ loadScript("https://staskkk.github.io/t2m/src/bencode.js")
 loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
-document.addEventListener("click", onClickFunction, true);
+document.addEventListener("click", onClickFunction);
 
 function onClickFunction (e) {
   if (!isAllLoaded) {
