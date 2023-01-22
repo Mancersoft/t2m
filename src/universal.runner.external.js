@@ -31,6 +31,7 @@ document.onclick = function (e) {
   && (element.href.startsWith("https:")
   || element.href.startsWith("http:"))
   && localStorage.getItem("TtoM:" + element.href) === null) {
+	e.stopPropagation();
     fixIfTorrentLink(element);
     return false;
   }
