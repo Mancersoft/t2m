@@ -33,6 +33,7 @@ for(let linkElem of allLinkElems) {
     && (element.href.startsWith("https:")
     || element.href.startsWith("http:"))
     && localStorage.getItem("TtoM:" + element.href) === null) {
+        e.stopPropagation();
         fixIfTorrentLink(element);
         return false;
     }
@@ -51,6 +52,7 @@ async function fixIfTorrentLink(element) {
     element.onclick = function (e) {
         e = e ||  window.event;
         const innerElement = e.target || e.srcElement;
+        e.stopPropagation();
         window.open(innerElement.href);
         return false;
     }
