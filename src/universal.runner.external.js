@@ -20,7 +20,6 @@ loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
 document.onclick = function (e) {
-  console.log("IsLoaded: " + isAllLoaded);
   if (!isAllLoaded) {
     return true;
   }
@@ -46,7 +45,7 @@ async function fixIfTorrentLink(element) {
     const blob = await data.blob();
     const result_link = await T2M.queue_torrent_blob(blob);
     element.setAttribute("href", result_link);
-    element.click();
+    //element.click();
     return;
   }
   
@@ -57,7 +56,6 @@ async function fixIfTorrentLink(element) {
 async function checkHeadersIsTorrent(url) {
   const response = await fetch(url, {method: 'HEAD'});
   for (const headerEntry of response.headers) {
-	console.log(headerEntry[1]);
     if (headerEntry[0] == "content-type"
     && headerEntry[1].includes("application/x-bittorrent")) {
       return true;
