@@ -19,9 +19,7 @@ loadScript("https://staskkk.github.io/t2m/src/bencode.js")
 loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
-document.addEventListener("click", onClickFunction);
-
-function onClickFunction (e) {
+document.onclick = function (e) {
   if (!isAllLoaded) {
     return true;
   }
@@ -33,6 +31,7 @@ function onClickFunction (e) {
   && (element.href.startsWith("https:")
   || element.href.startsWith("http:"))
   && localStorage.getItem("TtoM:" + element.href) === null) {
+	e.stopPropagation();
     fixIfTorrentLink(element);
     return false;
   }
