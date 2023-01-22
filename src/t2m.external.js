@@ -1,7 +1,7 @@
 
 
 
-const T2M = (function () {
+var T2M = (function () {
 	"use strict";
 
 	// Module for encoding/decoding UTF8
@@ -740,4 +740,4 @@ const T2M = (function () {
 
 })();
 
-export { T2M };
+
