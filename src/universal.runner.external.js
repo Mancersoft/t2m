@@ -56,6 +56,7 @@ async function fixIfTorrentLink(element) {
 async function checkHeadersIsTorrent(url) {
   const response = await fetch(url, {method: 'HEAD'});
   for (const headerEntry of response.headers) {
+	console.log(headerEntry[1]);
     if (headerEntry[0] == "content-type"
     && headerEntry[1].includes("application/x-bittorrent")) {
       return true;
