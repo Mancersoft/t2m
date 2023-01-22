@@ -33,7 +33,6 @@ function onClickFunction (e) {
   && (element.href.startsWith("https:")
   || element.href.startsWith("http:"))
   && localStorage.getItem("TtoM:" + element.href) === null) {
-	e.stopImmediatePropagation();
     fixIfTorrentLink(element);
     return false;
   }
