@@ -33,7 +33,6 @@ for(let linkElem of allLinkElems) {
     && (element.href.startsWith("https:")
     || element.href.startsWith("http:"))
     && localStorage.getItem("TtoM:" + element.href) === null) {
-        e.stopPropagation();
         fixIfTorrentLink(element);
         return false;
     }
@@ -48,9 +47,13 @@ async function fixIfTorrentLink(element) {
     const data = await fetch(element.href);
     const blob = await data.blob();
     const result_link = await T2M.queue_torrent_blob(blob);
-    var newElement = element.cloneNode(true);
-    newElement.setAttribute("href", result_link);
-    element.replaceWith(newElement);
+    element.setAttribute("href", result_link);
+    element.onclick = function (e) {
+        e = e ||  window.event;
+        const innerElement = e.target || e.srcElement;
+        window.open(innerElement.href);
+        return false;
+    }
     window.open(result_link);
     return;
   }
