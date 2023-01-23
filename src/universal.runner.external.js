@@ -24,7 +24,7 @@ magnetFrame.style = "display:none";
 magnetFrame.name = "magnetframe";
 document.body.appendChild(magnetFrame);
 
-var allLinkElems = document.body.getElementsByTagName("a");
+const allLinkElems = document.body.getElementsByTagName("a");
 for(let linkElem of allLinkElems) {
     linkElem.onclick = function (e) {
     if (!isAllLoaded) {
@@ -61,7 +61,7 @@ async function fixIfTorrentLink(element) {
         window.open(innerElement.href, "magnetframe");
         return false;
     }
-    
+
     window.open(result_link, "magnetframe");
     return;
   }
