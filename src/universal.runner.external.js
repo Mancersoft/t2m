@@ -19,6 +19,11 @@ loadScript("https://staskkk.github.io/t2m/src/bencode.js")
 loadScript("https://staskkk.github.io/t2m/src/base32.js")
 loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
 
+const magnetFrame = document.createElement("iframe");
+magnetFrame.style = "display:none";
+magnetFrame.name = "magnetframe";
+document.body.appendChild(magnetFrame);
+
 var allLinkElems = document.body.getElementsByTagName("a");
 for(let linkElem of allLinkElems) {
     linkElem.onclick = function (e) {
@@ -53,10 +58,11 @@ async function fixIfTorrentLink(element) {
         e = e ||  window.event;
         const innerElement = e.target || e.srcElement;
         e.stopImmediatePropagation();
-        window.open(innerElement.href);
+        window.open(innerElement.href, "magnetframe");
         return false;
     }
-    window.open(result_link);
+    
+    window.open(result_link, "magnetframe");
     return;
   }
   
