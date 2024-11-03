@@ -12,10 +12,10 @@ var loadScript = function (script_link) {
 	document.head.appendChild(script); 
 }
 
-loadScript("https://staskkk.github.io/t2m/src/sha1.js")
-loadScript("https://staskkk.github.io/t2m/src/bencode.js")
-loadScript("https://staskkk.github.io/t2m/src/base32.js")
-loadScript("https://staskkk.github.io/t2m/src/t2m.external.js")
+loadScript("https://mancersoft.github.io/t2m/src/sha1.js")
+loadScript("https://mancersoft.github.io/t2m/src/bencode.js")
+loadScript("https://mancersoft.github.io/t2m/src/base32.js")
+loadScript("https://mancersoft.github.io/t2m/src/t2m.external.js")
 
 var on_all_loaded = function () {
 	var link_elements = document.getElementsByClassName("torrent-download-link");
