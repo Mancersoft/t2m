@@ -8,6 +8,7 @@
 	<title>Torrent to Magnet</title>
 	<link rel="shortcut icon" href="favicon.png" />
 	<link rel="stylesheet" href="style.css" />
+	<script src="src/link.redirect.js"></script>
 	<script src="src/t2m.loader.js"></script>
 </head>
 <body>
@@ -83,6 +84,15 @@
 
 	<div class="converted"></div>
 
+	<br><br>
+
+	<h1><span class="section_id">Link Generator</span></h1>
+	<p>
+		<div style="font-size:24pt">Paste Magnet link Here and click "Generate":</div>
+		<input id="generate_link" type="text" style="width:100%;font-size:24pt;margin-bottom:10px" />
+		<input id="generate_btn" onclick="generateLink()" type="button" style="width:100%;font-size:24pt;margin-bottom:10px" value="Generate" />
+	</p>
+	
 	<div class="non_exclusive">
 
 		<h1 id="libraries"><span class="hardlink_text">Libraries<a class="hardlink" href="#libraries"></a></span></h1>
@@ -199,6 +209,17 @@
 
 </div>
 
+<script>
+function generateLink() {
+	const input = document.getElementById("generate_link");
+	const magnetLink = input.value;
+	if (!magnetLink.startsWith("magnet:")) {
+		return;
+	}
+
+	input.value = "https://mancersoft.github.io/t2m?link=" + magnetLink;
+}
+</script>
 
 </body>
 </html>
