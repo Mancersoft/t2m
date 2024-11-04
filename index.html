@@ -218,6 +218,9 @@ function generateLink() {
 	}
 
 	input.value = "https://mancersoft.github.io/t2m?link=" + magnetLink;
+	input.select();
+	input.setSelectionRange(0, 99999);
+  	navigator.clipboard.writeText(input.value);
 }
 </script>
 
